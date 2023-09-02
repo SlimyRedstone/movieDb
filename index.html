@@ -52,7 +52,7 @@
 				border-radius: 0.5em;
 				overflow: hidden;
 				border-collapse: collapse;
-				max-width: 85vw
+				max-width: 85vw;
 			}
 			thead,
 			tfoot {
@@ -311,16 +311,14 @@
 				padding-bottom: 0.3em;
 				max-width: 45vw;
 			}
-			a.link::after{
+			a.link::after {
 				content: '🔎';
 				color: red;
-				/* font-size: ; */
 				padding-left: 5px;
 				text-align: center;
-
 			}
-			a.link{
-				color:darkseagreen;
+			a.link {
+				color: darkseagreen;
 				text-decoration: none;
 			}
 			a.link:hover {
@@ -429,7 +427,7 @@
 	<body>
 		<div id="debug"></div>
 		<div class="controls" id="control-board" invisible>
-			<div class="control" >
+			<div class="control">
 				<label for="n_elements">Number of rows: </label>
 				<input type="number" name="n_rows" id="n_rows" min="15" max="35" />
 			</div>
@@ -751,10 +749,12 @@
 			new_row.querySelector('[data-row]').addEventListener('click', (event) => {
 				var card_info = document.querySelector('div#movie_info')
 
-				const search_link = new URL('/search','https://www.google.fr')
-				search_link.searchParams.set('q',encodeHTML(json['name']))
+				const search_link = new URL('/search', 'https://www.google.fr')
+				search_link.searchParams.set('q', encodeHTML(json['name']))
 
-				card_info.querySelector('div[data-name="name"]').innerHTML = `<a class="link" href="${search_link}" target="_blank">${json['name']}</a>`
+				card_info.querySelector(
+					'div[data-name="name"]'
+				).innerHTML = `<a class="link" href="${search_link}" target="_blank">${json['name']}</a>`
 				card_info.querySelector('div[data-name="duration"]').innerHTML = `<u><b>Duration</b></u>: <bl>${movie_duration}</bl>`
 				card_info.querySelector('div[data-name="file_size"]').innerHTML = `<u><b>File size</b></u>: ${file_size}`
 				card_info.querySelector('div[data-name="audio"]').innerHTML = `<u><b>Audio tracks</b></u>: <br>${full_audio_tracks}`
@@ -762,7 +762,7 @@
 				card_info.querySelector(
 					'div[data-name="quality"]'
 				).innerHTML = `<u><b>Quality</b></u>: ${movie_resolution} (${json['video']['w']}×${json['video']['h']})`
-				window.scrollTo(0,0)
+				window.scrollTo(0, 0)
 				setInfoCardState(true)
 			})
 			$('#table-main-body').append(new_row)
